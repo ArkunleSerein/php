@@ -1,0 +1,19 @@
+{
+    "name": "julien/php",
+    "type": "project",
+    "authors": [
+        {
+            "name": "Julien",
+            "email": "parsy.julien@hotmail.fr"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "App\\": "src/"
+        }
+    },
+    "require": {
+        "symfony/var-dumper": "^5.4"
+    }
+}
+

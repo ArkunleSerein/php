@@ -1,14 +1,19 @@
 <?php declare(strict_types = 1);
 
+namespace App\Combat;
+
+use App\Personnage\Hero;
+use App\Personnage\Ennemi;
+
 class Combat
 {
     private $hero = null;
-    private $monstre = null;
+    private $ennemi = null;
 
-    public function __construct(Hero $hero, Monstre $monstre)
+    public function __construct(Hero $hero, Ennemi $ennemi)
     {
         $this->hero = $hero;
-        $this->monstre = $monstre;
+        $this->ennemi = $ennemi;
     }
     public function getHero()
     {
@@ -23,14 +28,14 @@ class Combat
         return $this;
     }
 
-    public function getMonstre()
+    public function getEnnemi()
     {
-        return $this->monstre;
+        return $this->ennemi;
     }
     
-    public function setMonstre(Monstre $monstre): static
+    public function setEnnemi(Ennemi $ennemi): static
     {
-        $this->monstre = $monstre;
+        $this->ennemi = $ennemi;
 
         //design pattern "fluent"
         return $this;
@@ -39,10 +44,10 @@ class Combat
     public function action()
     {
 
-        // Le monstre attaque 
+        // Le Ennemi attaque 
 
-        $this->monstre->crier();
-        $attaque = $this->monstre->getPuissance() * random_int(5, 15) / 10;
+        $this->ennemi->crier();
+        $attaque = $this->ennemi->getPuissance() * random_int(5, 15) / 10;
         $vie = $this->hero->getVie() - $attaque;
         $this->hero->setVie($vie);
 
@@ -54,13 +59,13 @@ class Combat
         // le héro contre attaque
         $this->hero->crier();
         $attaque = $this->hero->getPuissance() * random_int(5, 15) / 10;
-        $vie = $this->monstre->getVie() - $attaque;
-        $this->monstre->setVie($vie);
+        $vie = $this->ennemi->getVie() - $attaque;
+        $this->ennemi->setVie($vie);
     }
 
     public function isFini()
     {
-        if ($this->hero->getVie() == 0 || $this->monstre->getVie() == 0) 
+        if ($this->hero->getVie() == 0 || $this->ennemi->getVie() == 0) 
         {
             return true;
         }

@@ -1,6 +1,10 @@
-<?php
+<?php declare(strict_types = 1);
 
-class Personnage{
+namespace App\Personnage;
+use Exception;
+
+// le mot clé abstract empéche la class ne peut être instancier directement.
+abstract class Personnage{
 
     protected $vie = 100;
     protected $puissance = 0;
